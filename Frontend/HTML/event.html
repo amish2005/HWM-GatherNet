@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Event</title>
+    <link rel="stylesheet" href="/Frontend/CSS/event.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">PeerConnect</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li class="dropdown">
+          <a href="#"
+            >Events <i id="caretDown" class="fa-solid fa-caret-down"></i
+          ></a>
+          <div class="dropdown-content">
+            <a href="#">All Events</a>
+            <a href="#">Add/Organize Events</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#"
+            >Sports <i id="caretDown" class="fa-solid fa-caret-down"></i
+          ></a>
+          <div class="dropdown-content">
+            <a href="#">Join Teams</a>
+            <a href="#">Create Team</a>
+          </div>
+        </li>
+        <li><a href="#">Communities</a></li>
+        <li class="auth"><a href="#">Login/Signup</a></li>
+      </ul>
+      <div class="location">Your Location</div>
+    </nav>
+
+    <div class="formContainer">
+      <h1>Create Event</h1>
+      <form action="/create-event" method="POST">
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input
+            type="text"
+            id="eventName"
+            name="eventName"
+            placeholder="Add Event Name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="eventStartDate">Start Date</label>
+          <input
+            type="date"
+            id="eventStartDate"
+            name="eventStartDate"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="eventEndDate">End Date</label>
+          <input type="date" id="eventEndDate" name="eventEndDate" />
+        </div>
+        <div class="form-group">
+          <label for="location">Google Maps Link</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Google Maps Link (https://www.google.com/maps/)"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="eventDetails">Event Details</label>
+          <textarea
+            id="eventDetails"
+            name="eventDetails"
+            placeholder="Add Event Details"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="eventThumbnail">Upload Thumbnail Image:</label>
+          <input
+            type="file"
+            id="eventThumbnail"
+            name="eventThumbnail"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="form-group">
+            <label for="additionalImages">Upload Event Images (Up to 4):</label>
+            <input
+              type="file"
+              id="additionalImages"
+              name="additionalImages"
+              accept="image/*"
+              multiple
+              required
+            />
+          </div>
+        <div class="form-group">
+          <button type="submit" class="login__button">CREATE EVENT</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Get today's date
+      const today = new Date().toISOString().split("T")[0];
+
+      // Set the min attribute to today's date
+      document.getElementById("eventStartDate").setAttribute("min", today);
+      document.getElementById("eventEndDate").setAttribute("min", today);
+    </script>
+  </body>
+</html>

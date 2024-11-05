@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #001f54;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    background-color: #034078;
+}
+
+.header-title {
+    font-size: 24px;
+    color: #fefcfb;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.left-section {
+    width: 30%;
+    padding: 20px;
+    background-color: #1282a2;
+    border-radius: 10px;
+}
+
+.flag {
+    width: 60px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.details-list {
+    list-style: none;
+}
+
+.details-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.right-section {
+    width: 65%;
+    padding: 20px;
+    background-color: #034078;
+    border-radius: 10px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.main-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #fefcfb;
+    margin-bottom: 20px;
+}
+
+.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.bio-title {
+    font-size: 20px;
+    color: #fefcfb;
+}
+
+.bio {
+    margin-bottom: 30px;
+}
+
+.additional-info {
+    margin-bottom: 30px;
+}
+
+.experience h3,
+.progress h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.experience ul {
+    list-style: none;
+}
+
+.experience ul li {
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #1282a2;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.progress-fill {
+    display: block;
+    height: 100%;
+    background-color: #fefcfb;
+    border-radius: 10px;
+}
+
+.contact-info {
+    font-size: 14px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.footer-btn {
+    background-color: #034078;
+    color: #fefcfb;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-time,
+.footer-link {
+    font-size: 14px;
+}

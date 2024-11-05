@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localized Peer-to-Peer Platform</title>
+  <link rel="stylesheet" href="/CSS/styles2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">PeerConnect <i class="fa-solid fa-wifi fa-xs" style="color: #ffffff;"></i></div>
+    <ul class="nav-links">
+        
+      <li><a href="/">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li class="dropdown">
+        <a href="#">Events <i id="caretDown" class="fa-solid fa-caret-down"></i></a>
+        <div class="dropdown-content">
+        <a href="#">All Events</a>
+        <a href="/create-event">Add/Organize Events</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Sports <i id="caretDown" class="fa-solid fa-caret-down"></i></a>
+        <div class="dropdown-content">
+        <a href="#">All Sports</a> 
+        <a href="/create-sport">Organize Sports</a>  
+        </div>
+      </li>
+      <li><a href="#">Communities</a></li>
+      <% if (user) { %>
+        <li class="auth"><a href="/auth/logout">Logout</a></li>
+    <% } else { %>
+        <li class="auth"><a href="/auth/login">Login/Signup</a></li>
+    <% } %>
+    </ul>
+    <% if (user) { %>
+        <div class="location" style="color: #ffffff"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
+            <% let addressParts = shortAddress.split(','); %>
+
+            <%= addressParts[0] %><br /><span style="margin-top: 3px; display: block;"></span>&nbsp;&nbsp;<%= addressParts[1] %></div>
+    <% } else {  %>
+        <div class="location"><i class="fa-solid fa-wifi" style="color: #ffffff;"></i></div>
+        <% } %>
+        
+  </nav>
+
+  <!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <% if(user){ %>
+        <h1>Welcome to PeerConnect, <%= user ? user.firstName : 'Guest' %>!</h1>
+      
+    <% } else { %>
+        <h1>Discover Events & Opportunities Near You</h1>
+    <% } %>
+    
+    <p>Find the latest events, sports activities, study groups, and communities tailored just for you.</p>
+    <button class="explore-btn">Explore More</button>
+  </div>
+</section>
+
+<% if(user){ %>
+
+<!-- Featured Events Section -->
+<section class="featured-events">
+    <h2>Featured Events</h2>
+    <div class="featured-cards">
+        <% if (featuredEvents.length > 0) { %>
+            <% featuredEvents.forEach(function(event) { %>
+      
+        <div class="featured-card">
+            <img src="/uploads/<%= event.eventThumbnail.split('\\').pop() %>" alt="<%= event.eventName %>">
+
+            <div class="featured-info">
+                <h3><%= event.eventName %></h3>
+                <% if(event.eventStartDate = event.eventEndDate) {%>
+                <p>Date: <%= new Date(event.eventStartDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+
+                <% } else { %>
+                    <p>Start Date: <%= new Date(event.eventStartDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+                    <p>End Date: <%= new Date(event.eventEndDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+                <% } %>
+                <p>Location: <%= event.locationName %></p>
+                <button class="btn btn-secondary">View Details</button>
+            </div>
+        </div>
+        <% }); %>
+      <% } else { %>
+        <p>No featured events available</p>
+      <% } %>
+    </div>
+</section>
+
+<% } else { %>
+<!-- Featured Events Section -->
+<section class="featured-events">
+    <h2>Featured Events</h2>
+    <div class="featured-cards">
+      
+      <div class="featured-card">
+          <img src="/images/diwali-mela.jpg" alt="Diwali Mela">
+          <div class="featured-info">
+              <h3>Diwali Mela <br />Uphaar</h3>
+              <p>Date: October 23, 2024</p>
+              <p>Location: C Block Amphitheatre</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="/images/raftaar-concert.jpg" alt="Raftaar Concert">
+          <div class="featured-info">
+              <h3>Raftaar Concert <br />2024</h3>
+              <p>Date: November 3, 2024</p>
+              <p>Location: Main Park</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Book Sharing Meetup">
+          <div class="featured-info">
+              <h3>Book Sharing Meetup</h3>
+              <p>Date: November 10, 2024</p>
+              <p>Location: Library, ABC City</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+    </div>
+  </section>
+
+<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if(user){ %>
+
+    <!-- Featured Sports Section -->
+    <section class="featured-events">
+        <h2>Featured Sports</h2>
+        <div class="featured-cards">
+            <% if (featuredSports.length > 0) { %>
+                <% featuredSports.forEach(function(sport) { %>
+          
+            <div class="featured-card">
+                <img src="/uploads/<%= sport.sportThumbnail.split('\\').pop() %>" alt="<%= sport.sportName %>">
+    
+                <div class="featured-info">
+                    <h3><%= sport.sportName %></h3>
+                    <% if(sport.sportStartDate = sport.sportEndDate) {%>
+                    <p>Date: <%= new Date(sport.sportStartDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+    
+                    <% } else { %>
+                        <p>Start Date: <%= new Date(sport.sportStartDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+                        <p>End Date: <%= new Date(sport.sportEndDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></p>
+                    <% } %>
+                    <p>Location: <%= sport.locationName %></p>
+                    <button class="btn btn-secondary">View Details</button>
+                </div>
+            </div>
+            <% }); %>
+          <% } else { %>
+            <p>No featured sports available</p>
+          <% } %>
+        </div>
+    </section>
+    
+    <% } else { %>
+    <!-- Featured Sports Section -->
+    <section class="featured-sports">
+        <h2>Featured Sports</h2>
+        <div class="featured-cards">
+          
+          <div class="featured-card">
+              <img src="/images/diwali-mela.jpg" alt="Diwali Mela">
+              <div class="featured-info">
+                  <h3>Diwali Mela <br />Uphaar</h3>
+                  <p>Date: October 23, 2024</p>
+                  <p>Location: C Block Amphitheatre</p>
+                  <button class="btn btn-secondary">View Details</button>
+              </div>
+          </div>
+          <div class="featured-card">
+              <img src="/images/raftaar-concert.jpg" alt="Raftaar Concert">
+              <div class="featured-info">
+                  <h3>Raftaar Concert <br />2024</h3>
+                  <p>Date: November 3, 2024</p>
+                  <p>Location: Main Park</p>
+                  <button class="btn btn-secondary">View Details</button>
+              </div>
+          </div>
+          <div class="featured-card">
+              <img src="https://via.placeholder.com/350x200" alt="Book Sharing Meetup">
+              <div class="featured-info">
+                  <h3>Book Sharing Meetup</h3>
+                  <p>Date: November 10, 2024</p>
+                  <p>Location: Library, ABC City</p>
+                  <button class="btn btn-secondary">View Details</button>
+              </div>
+          </div>
+        </div>
+      </section>
+    
+    <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Featured Communities Section -->
+<section class="featured-events">
+  <h2>Featured Communities</h2>
+  <div class="featured-cards">
+    
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Cricket Tournament">
+          <div class="featured-info">
+              <h3>Cricket Tournament</h3>
+              <p>Date: October 25, 2024</p>
+              <p>Location: XYZ Grounds</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Hackathon 2024">
+          <div class="featured-info">
+              <h3>Hackathon 2024</h3>
+              <p>Date: November 3, 2024</p>
+              <p>Location: DTU Campus</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Book Sharing Meetup">
+          <div class="featured-info">
+              <h3>Book Sharing Meetup</h3>
+              <p>Date: November 10, 2024</p>
+              <p>Location: Library, ABC City</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+<!-- Featured Student Activities Section -->
+<section class="featured-events">
+  <h2>Featured Student Activities</h2>
+  <div class="featured-cards">
+    
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Cricket Tournament">
+          <div class="featured-info">
+              <h3>Cricket Tournament</h3>
+              <p>Date: October 25, 2024</p>
+              <p>Location: XYZ Grounds</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Hackathon 2024">
+          <div class="featured-info">
+              <h3>Hackathon 2024</h3>
+              <p>Date: November 3, 2024</p>
+              <p>Location: DTU Campus</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+      <div class="featured-card">
+          <img src="https://via.placeholder.com/350x200" alt="Book Sharing Meetup">
+          <div class="featured-info">
+              <h3>Book Sharing Meetup</h3>
+              <p>Date: November 10, 2024</p>
+              <p>Location: Library, ABC City</p>
+              <button class="btn btn-secondary">View Details</button>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+  <script src="/JS/script.js"></script>
+</body>
+</html>

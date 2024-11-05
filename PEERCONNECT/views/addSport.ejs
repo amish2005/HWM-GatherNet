@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Sport</title>
+    <link rel="stylesheet" href="/CSS/event.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">PeerConnect <i class="fa-solid fa-wifi fa-xs" style="color: #ffffff;"></i></div>
+    <ul class="nav-links">
+        
+      <li><a href="/">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li class="dropdown">
+        <a href="#">Events <i id="caretDown" class="fa-solid fa-caret-down"></i></a>
+        <div class="dropdown-content">
+        <a href="#">All Events</a>
+        <a href="/create-event">Add/Organize Events</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Sports <i id="caretDown" class="fa-solid fa-caret-down"></i></a>
+        <div class="dropdown-content">
+        <a href="#">All Sports</a> 
+        <a href="/create-sport">Organize Sports</a>  
+        </div>
+      </li>
+      <li><a href="#">Communities</a></li>
+      <% if (User) { %>
+        <li class="auth"><a href="/auth/logout">Logout</a></li>
+    <% } else { %>
+        <li class="auth"><a href="/auth/login">Login/Signup</a></li>
+    <% } %>
+    </ul>
+    <% if (User) { %>
+        <div class="location" style="color: #ffffff"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
+            <% let addressParts = shortAddress.split(','); %>
+
+            <%= addressParts[0] %><br /><span style="margin-top: 3px; display: block;"></span>&nbsp;&nbsp;<%= addressParts[1] %></div>
+    <% } else {  %>
+        <div class="location"><i class="fa-solid fa-wifi" style="color: #ffffff;"></i></div>
+        <% } %>
+        
+  </nav>
+
+    <div class="formContainer">
+      <h1>Organize Sports</h1>
+      <form action="/create-sport" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="sportName">Sport Name</label>
+          <input
+            type="text"
+            id="sportName"
+            name="sportName"
+            placeholder="Add Sport Name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="sportStartDate">Start Date</label>
+          <input
+            type="date"
+            id="sportStartDate"
+            name="sportStartDate"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="sportEndDate">End Date</label>
+          <input type="date" id="sportEndDate" name="sportEndDate" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="locationName">Location</label>
+            <input
+              type="text"
+              id="locationName"
+              name="locationName"
+              placeholder="Local address (example:- Sector-17, Rohini)"
+              required
+            />
+          </div>
+
+        <div class="form-group">
+          <label for="location">Google Maps Link</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Google Maps Link (https://www.google.com/maps/)"
+            required
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="sportDetails">Sport Details</label>
+          <textarea
+            id="sportDetails"
+            name="sportDetails"
+            placeholder="Add Sport Details"
+            required
+          ></textarea>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="teamSize">Team Size (if required)</label>
+            <input
+            type="number"
+            id="teamSize"
+            name="teamSize"
+            placeholder="Team Size"
+            
+          />
+          </div>
+
+
+
+        <div class="form-group">
+          <label for="sportThumbnail">Upload Thumbnail Image:</label>
+          <input
+            type="file"
+            id="sportThumbnail"
+            name="sportThumbnail"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="form-group">
+            <label for="additionalImages">Upload Sport Images (Up to 4):</label>
+            <input
+              type="file"
+              id="additionalImages"
+              name="additionalImages"
+              accept="image/*"
+              multiple
+              required
+            />
+          </div>
+        <div class="form-group">
+          <button type="submit" class="login__button">CREATE SPORT</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Get today's date
+      const today = new Date().toISOString().split("T")[0];
+
+      // Set the min attribute to today's date
+      document.getElementById("sportStartDate").setAttribute("min", today);
+      document.getElementById("sportEndDate").setAttribute("min", today);
+    </script>
+  </body>
+</html>
